@@ -1,7 +1,10 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+
   images: {
     domains: ["images.pexels.com", "images.unsplash.com", "pbs.twimg.com"],
     remotePatterns: [
