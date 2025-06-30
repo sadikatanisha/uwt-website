@@ -24,7 +24,7 @@ const Navbar: React.FC = () => {
     }`;
 
   return (
-    <nav className="flex justify-between items-center py-5 px-4 lg:px-7">
+    <nav className="flex justify-between items-center py-5 px-4 lg:px-7 sticky top-0 bg-white z-20">
       <Link href="/">
         <Image src={logo} width={50} height={50} alt="logo" />
       </Link>
@@ -38,10 +38,11 @@ const Navbar: React.FC = () => {
           </li>
         ))}
       </ul>
-
-      <Button size="lg" className="hidden md:block">
-        Donate
-      </Button>
+      <Link href="/donate">
+        <Button size="lg" className="hidden md:block">
+          Donate
+        </Button>
+      </Link>
 
       {/* Mobile Menu */}
       <Sheet>
@@ -59,7 +60,9 @@ const Navbar: React.FC = () => {
                 </Link>
               </li>
             ))}
-            <Button className="mt-4 w-full">Donate</Button>
+            <Link href="/donate">
+              <Button className="mt-4 w-full">Donate</Button>
+            </Link>
           </ul>
         </SheetContent>
       </Sheet>

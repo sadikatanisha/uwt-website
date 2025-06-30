@@ -38,7 +38,7 @@ export default function Banner() {
 
   if (loading) {
     return (
-      <section className="relative w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-2xl">
+      <section className="mt-[10px] relative w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-2xl">
         <Skeleton className="w-full h-full" />
       </section>
     );
@@ -51,7 +51,7 @@ export default function Banner() {
   const imgUrl = urlFor(banner.image).width(2000).auto("format").url();
 
   return (
-    <section className="relative w-full h-[500px] sm:h-[600px] lg:h-[700px] overflow-hidden rounded-2xl">
+    <section className="relative mt-[10px] w-full h-[500px] sm:h-[600px] lg:h-[650px] overflow-hidden rounded-2xl">
       <Image
         src={imgUrl}
         alt={banner.title}
@@ -73,7 +73,7 @@ export default function Banner() {
           {banner.subTitle}
         </p>
         <a
-          href="/About"
+          href="/about"
           className="inline-block bg-white text-black font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-200 transition"
         >
           Learn More

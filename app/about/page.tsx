@@ -43,31 +43,6 @@ const stats = [
   },
 ];
 
-const milestones = [
-  {
-    year: "2010",
-    title: "Foundation",
-    description:
-      "Started with a vision to create sustainable change in underserved communities.",
-  },
-  {
-    year: "2015",
-    title: "Global Expansion",
-    description: "Extended our reach to 15 countries across 3 continents.",
-  },
-  {
-    year: "2020",
-    title: "Digital Innovation",
-    description:
-      "Launched digital platforms to amplify our impact during global challenges.",
-  },
-  {
-    year: "2024",
-    title: "Quarter Million",
-    description: "Reached our milestone of directly impacting 250,000 lives.",
-  },
-];
-
 const teamMembers = [
   {
     name: "Sarah Johnson",

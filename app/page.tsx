@@ -1,6 +1,5 @@
 import Banner from "@/components/home/Banner";
 import HomeAbout from "@/components/home/HomeAbout";
-import HomeContact from "@/components/home/HomeContact";
 import HomeProjects from "@/components/home/HomeProjects";
 import ImageGrid from "@/components/home/ImageGrid";
 import JoinUs from "@/components/home/JoinUs";
@@ -17,7 +16,6 @@ export default async function Home() {
       <JoinUs />
       <Journey />
       <ImageGrid />
-      <HomeContact />
     </div>
   );
 }
