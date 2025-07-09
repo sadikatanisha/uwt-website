@@ -3,12 +3,6 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { notFound } from "next/navigation";
 
-interface Params {
-  params: {
-    slug: string;
-  };
-}
-
 // Pre-generate static routes for all categories
 export async function generateStaticParams() {
   const slugs: { slug: string }[] = await client.fetch(
@@ -17,7 +11,11 @@ export async function generateStaticParams() {
   return slugs;
 }
 
-export default async function page({ params: { slug } }: Params) {
+export default async function page({
+  params: { slug },
+}: {
+  params: { slug: string };
+}) {
   const query = `*[_type == "category" && slug.current == $slug][0]{
     _id,
     name,
