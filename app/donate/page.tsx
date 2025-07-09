@@ -68,10 +68,6 @@ const page = () => {
     setTimeout(() => setCopiedField(""), 2000);
   };
 
-  const getProgressPercentage = (raised: any, goal: any) => {
-    return Math.min((raised / goal) * 100, 100);
-  };
-
   return (
     <div className="min-h-screen bg-white text-black">
       {/* Header */}

@@ -35,5 +35,16 @@ export default defineType({
       title: "Category Image",
       options: { hotspot: true },
     }),
+    defineField({
+      name: "slug",
+      type: "slug",
+      title: "Slug",
+      description: "URL‑friendly ID generated from the name",
+      options: {
+        source: "name",
+        maxLength: 96,
+      },
+      validation: (Rule) => Rule.required(),
+    }),
   ],
 });

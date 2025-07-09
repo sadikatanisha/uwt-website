@@ -1,5 +1,5 @@
 "use client";
-
+import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
@@ -15,7 +15,6 @@ import {
 } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 
-// Map icon names to Lucide components
 const iconMap: Record<string, React.ReactNode> = {
   Shield: <Shield size={24} />,
   Leaf: <Leaf size={24} />,
@@ -31,6 +30,7 @@ interface SanityCategory {
   description: string;
   icon: string;
   image?: { asset: { _ref: string; _type: string } };
+  slug: string;
 }
 
 export default function HomeAbout() {
@@ -43,7 +43,7 @@ export default function HomeAbout() {
     const fetchCategories = async () => {
       try {
         const data = (await client.fetch(
-          `*[_type == "category"]{ _id, name, subtitle, description, icon, image }`
+          `*[_type == "category"]{ _id, name, subtitle, description, icon, image, "slug": slug.current }`
         )) as SanityCategory[];
         setCategories(data);
         if (data.length) setSelectedKey(data[0]._id);
@@ -105,6 +105,7 @@ export default function HomeAbout() {
 
   const selected =
     categories.find((cat) => cat._id === selectedKey) || categories[0];
+  console.log(selected.slug);
 
   return (
     <section className="max-w-7xl mx-auto px-4 py-20">
@@ -166,9 +167,12 @@ export default function HomeAbout() {
               <p className="text-lg text-gray-700 leading-relaxed">
                 {selected.description}
               </p>
-              <button className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors font-medium">
+              <Link
+                href={`/facets/${selected.slug}`}
+                className="inline-flex items-center gap-2 bg-black text-white px-6 py-3 rounded-lg hover:bg-gray-800 transition-colors font-medium"
+              >
                 <BookOpen size={18} /> Learn More <ArrowRight size={18} />
-              </button>
+              </Link>
             </div>
             <div className="relative">
               <div className="aspect-[4/3] bg-gray-100 rounded-xl overflow-hidden border border-gray-200">
@@ -222,13 +226,16 @@ export default function HomeAbout() {
                   {cat.description.substring(0, 120)}...
                 </p>
 
-                <div className="flex items-center text-[#BC4749] text-sm font-medium group-hover:gap-2 transition-all">
+                <Link
+                  href={`/facets/${selected.slug}`}
+                  className="flex items-center text-[#BC4749] text-sm font-medium group-hover:gap-2 transition-all"
+                >
                   Explore Topic
                   <ArrowRight
                     size={16}
                     className="ml-1 group-hover:translate-x-1 transition-transform"
                   />
-                </div>
+                </Link>
 
                 {/* Selection indicator */}
                 {selectedKey === cat._id && (
@@ -241,8 +248,8 @@ export default function HomeAbout() {
       </div>
 
       {/* Call to Action */}
-      <div className="text-center bg-gray-50 rounded-2xl p-8 border border-gray-200">
-        <h3 className="text-2xl font-bold text-black mb-4">
+      <div className="text-center bg-black rounded-2xl p-8 border border-gray-200">
+        <h3 className="text-2xl font-bold text-white mb-4">
           Ready to Make a Difference?
         </h3>
         <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
@@ -250,12 +257,18 @@ export default function HomeAbout() {
           and taking action in their communities.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <button className="px-8 py-3 bg-[#BC4749] text-white rounded-lg hover:bg-red-700 transition-colors font-medium">
+          <Link
+            href="/about"
+            className="px-8 py-3 bg-[#BC4749] text-white rounded-lg hover:bg-[#BC4749]/90 transition-colors font-medium"
+          >
             Start Learning
-          </button>
-          <button className="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 transition-colors font-medium">
+          </Link>
+          <Link
+            href="/donate"
+            className="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-lg hover:border-gray-400 transition-colors font-medium"
+          >
             Get Involved
-          </button>
+          </Link>
         </div>
       </div>
     </section>

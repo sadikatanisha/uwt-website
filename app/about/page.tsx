@@ -272,7 +272,7 @@ const page = () => {
             communities and empowers individuals worldwide.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <button className="px-8 py-4 bg-[#BC4749] text-white rounded-lg hover:bg-red-700 transition-colors font-medium text-lg">
+            <button className="px-8 py-4 bg-[#BC4749] text-white rounded-lg hover:bg-[#BC4749]/80 transition-colors font-medium text-lg">
               Donate Now
             </button>
             <button className="px-8 py-4 border-2 border-white text-white rounded-lg hover:bg-white hover:text-black transition-colors font-medium text-lg">
