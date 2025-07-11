@@ -10,10 +10,7 @@ export async function generateStaticParams() {
   return slugs;
 }
 
-export default async function Page(props: {
-  params: { slug: string };
-  searchParams: Record<string, string | string[] | undefined>;
-}) {
+export default async function Page(props: any) {
   const { slug } = await props.params;
 
   const category = await client.fetch(
