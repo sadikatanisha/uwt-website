@@ -3,7 +3,6 @@ import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { notFound } from "next/navigation";
 
-// Pre-generate static routes for all categories
 export async function generateStaticParams() {
   const slugs: { slug: string }[] = await client.fetch(
     `*[_type == "category"]{ "slug": slug.current }`
@@ -11,21 +10,23 @@ export async function generateStaticParams() {
   return slugs;
 }
 
-export default async function page({
-  params: { slug },
-}: {
+export default async function Page(props: {
   params: { slug: string };
+  searchParams: Record<string, string | string[] | undefined>;
 }) {
-  const query = `*[_type == "category" && slug.current == $slug][0]{
-    _id,
-    name,
-    subtitle,
-    description,
-    icon,
-    image
-  }`;
+  const { slug } = await props.params;
 
-  const category = await client.fetch(query, { slug });
+  const category = await client.fetch(
+    `*[_type=="category" && slug.current == $slug][0]{
+      _id,
+      name,
+      subtitle,
+      description,
+      icon,
+      image
+    }`,
+    { slug }
+  );
 
   if (!category) {
     notFound();
