@@ -1,3 +1,8 @@
+import AboutIntro from "@/components/about/aboutIntro";
+import GlobalCommunity from "@/components/about/globalCommunity";
+import MissionAndVision from "@/components/about/missionAndVision";
+import OurStory from "@/components/about/ourStory";
+import UWTTeamComponent from "@/components/about/team";
 import Journey from "@/components/shared/Journey";
 import {
   Handshake,
@@ -43,27 +48,6 @@ const stats = [
   },
 ];
 
-const teamMembers = [
-  {
-    name: "Sarah Johnson",
-    role: "Executive Director",
-    bio: "15+ years in international development and community empowerment.",
-    image: "/api/placeholder/120/120",
-  },
-  {
-    name: "Michael Chen",
-    role: "Program Director",
-    bio: "Expert in sustainable development with field experience across 4 continents.",
-    image: "/api/placeholder/120/120",
-  },
-  {
-    name: "Aisha Patel",
-    role: "Community Partnerships",
-    bio: "Passionate advocate for grassroots leadership and local solutions.",
-    image: "/api/placeholder/120/120",
-  },
-];
-
 const recognitions = [
   { title: "UN SDG Champion", year: "2023" },
   { title: "Global Impact Award", year: "2022" },
@@ -74,21 +58,11 @@ const page = () => {
   return (
     <div className="bg-white">
       {/* Hero Header */}
-      <section className="max-w-6xl mx-auto px-4 py-20">
-        <header className="text-center space-y-8">
-          <div className="inline-block px-6 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-700 mb-4">
-            Empowering Communities Since 2010
-          </div>
-          <h1 className="text-6xl font-bold text-black leading-tight">
-            About Our Mission
-          </h1>
-          <p className="mt-6 text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-            Pioneering sustainable change through empowerment and innovation.
-            We're redefining global impact with community-focused solutions that
-            create lasting transformation.
-          </p>
-        </header>
-      </section>
+      <AboutIntro />
+      <MissionAndVision />
+      <GlobalCommunity />
+      <OurStory />
+      <UWTTeamComponent />
 
       {/* Impact Stats */}
       <section className="bg-black py-16">
@@ -197,41 +171,6 @@ const page = () => {
 
       {/* Timeline */}
       <Journey />
-
-      {/* Leadership Team */}
-      <section className="bg-gray-50 py-20">
-        <div className="max-w-6xl mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-black mb-4">
-              Our Leadership
-            </h2>
-            <p className="text-xl text-gray-600">
-              Dedicated professionals committed to driving positive change
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-sm hover:shadow-lg transition-shadow text-center"
-              >
-                <div className="w-24 h-24 bg-gray-200 rounded-full mx-auto mb-6 flex items-center justify-center">
-                  <Users size={32} className="text-gray-400" />
-                </div>
-                <h3 className="text-xl font-bold text-black mb-2">
-                  {member.name}
-                </h3>
-                <div className="text-[#BC4749] font-medium mb-4">
-                  {member.role}
-                </div>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {member.bio}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Recognition */}
       <section className="max-w-6xl mx-auto px-4 py-20">
