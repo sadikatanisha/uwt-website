@@ -6,7 +6,7 @@ import ImageGrid from "@/components/home/ImageGrid";
 import JoinUs from "@/components/home/JoinUs";
 import OurWork from "@/components/home/OurWork";
 import Stats from "@/components/home/Stats";
-import WhoWeAre from "@/components/home/WHoWeAre";
+import WhoWeAre from "@/components/home/WhoWeAre";
 import Faqs from "@/components/shared/faqs";
 
 export default async function Home() {
