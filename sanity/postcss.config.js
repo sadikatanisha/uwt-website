@@ -1,8 +1,6 @@
-// sanity/postcss.config.js
-module.exports = {
-  plugins: {
-    // you can leave it empty or add plugins as needed:
-    tailwindcss: {},
-    autoprefixer: {},
-  },
+import tailwind from "tailwindcss";
+import autoprefixer from "autoprefixer";
+
+export default {
+  plugins: [tailwind, autoprefixer],
 };

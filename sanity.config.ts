@@ -9,12 +9,13 @@ import banner from "./sanity/schemaTypes/banner";
 import journey from "./sanity/schemaTypes/journey";
 import category from "./sanity/schemaTypes/category";
 import team from "./sanity/schemaTypes/team";
+import campaign from "./sanity/schemaTypes/campaign";
 export default defineConfig({
   basePath: "/studio",
   projectId,
   dataset,
   schema: {
-    types: [banner, journey, category, team],
+    types: [banner, journey, category, team, campaign],
   },
   plugins: [
     structureTool({ structure }),

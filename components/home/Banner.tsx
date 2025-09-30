@@ -67,10 +67,10 @@ export default function Banner() {
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8">
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md mb-4">
-          {banner.title}
+          Educate Empower Eradicate
         </h1>
         <p className="max-w-2xl text-lg sm:text-2xl text-gray-100 mb-6">
-          {banner.subTitle}
+          Unstitchd Women's Tapestry
         </p>
         <a
           href="/about"
