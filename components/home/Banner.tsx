@@ -53,7 +53,7 @@ export default function Banner() {
   return (
     <section className="relative mt-[10px] w-full h-[500px] sm:h-[600px] lg:h-[650px] overflow-hidden rounded-2xl">
       <Image
-        src={imgUrl}
+        src="/banner.jpg"
         alt={banner.title}
         fill
         className="object-cover object-center"
