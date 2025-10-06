@@ -1,40 +1,62 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { Skeleton } from "@/components/ui/skeleton";
 
-// Banner data type
 interface BannerData {
   title: string;
   subTitle: string;
-  image: { asset: { _ref: string; _type: string } };
+  image?: { asset: { _ref: string; _type: string } } | null;
 }
 
-// Client-side fetch for banner
 async function getBanner(): Promise<BannerData | null> {
-  const banner = await client.fetch<BannerData | null>(`
-    *[_type == "banner"] | order(_createdAt desc)[0]{
-      title,
-      subTitle,
-      image
-    }
-  `);
-  return banner;
+  try {
+    const banner = await client.fetch<BannerData | null>(`
+      *[_type == "banner"] | order(_createdAt desc)[0]{
+        title,
+        subTitle,
+        image
+      }
+    `);
+    return banner;
+  } catch (err) {
+    console.error("Sanity getBanner() error:", err);
+    throw err;
+  }
 }
 
 export default function Banner() {
   const [banner, setBanner] = useState<BannerData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    let mounted = true;
+    setLoading(true);
     getBanner()
-      .then((data) => setBanner(data))
-      .catch((err) => console.error("Sanity banner fetch error:", err))
-      .finally(() => setLoading(false));
+      .then((data) => {
+        if (!mounted) return;
+        setBanner(data);
+      })
+      .catch((err: any) => {
+        console.error("Sanity banner fetch error:", err);
+        if (mounted) setError(err?.message ?? "Failed to load banner");
+      })
+      .finally(() => mounted && setLoading(false));
+
+    return () => {
+      mounted = false;
+    };
   }, []);
+
+  // If Sanity image present, build a URL; otherwise fallback to local public image
+  const imgUrl =
+    banner?.image && (banner.image as any).asset
+      ? urlFor(banner.image).width(2000).auto("format").url()
+      : "/banner.jpg";
 
   if (loading) {
     return (
@@ -44,21 +66,30 @@ export default function Banner() {
     );
   }
 
-  if (!banner) {
-    return null;
+  // show a small placeholder UI instead of returning null so pages don't break
+  if (!banner && error) {
+    return (
+      <section className="relative mt-[10px] w-full h-[400px] sm:h-[500px] overflow-hidden rounded-2xl bg-gray-100 flex items-center justify-center">
+        <div className="text-center px-4">
+          <p className="text-sm text-gray-600 mb-2">Banner failed to load.</p>
+          <p className="text-xs text-gray-500">
+            Check console / platform logs for details.
+          </p>
+        </div>
+      </section>
+    );
   }
-
-  const imgUrl = urlFor(banner.image).width(2000).auto("format").url();
 
   return (
     <section className="relative mt-[10px] w-full h-[500px] sm:h-[600px] lg:h-[650px] overflow-hidden rounded-2xl">
       <Image
-        src="/banner.jpg"
-        alt={banner.title}
+        src={imgUrl}
+        alt={banner?.title ?? "Banner"}
         fill
         className="object-cover object-center"
-        placeholder="blur"
-        blurDataURL="/placeholder.png"
+        // placeholder only works for static local strings; if using external URL consider removing placeholder
+        // placeholder="blur"
+        // blurDataURL="/placeholder.png"
         priority
         onLoadingComplete={() => setLoading(false)}
       />
@@ -67,10 +98,10 @@ export default function Banner() {
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8">
         <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md mb-4">
-          Educate Empower Eradicate
+          {banner?.title ?? "Educate Empower Eradicate"}
         </h1>
         <p className="max-w-2xl text-lg sm:text-2xl text-gray-100 mb-6">
-          Unstitchd Women's Tapestry
+          {banner?.subTitle ?? "Unstitchd Women's Tapestry"}
         </p>
         <a
           href="/about"
