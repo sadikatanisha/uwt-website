@@ -21,9 +21,19 @@ export default async function Campaigns() {
   const campaigns = (await client.fetch(query)) as Campaign[];
 
   return (
-    <section className="max-w-7xl mx-auto p-6">
+    <section className="max-w-7xl mx-auto py-6">
       <header className="mb-6">
-        <h2 className="text-3xl font-semibold">UWT Fundraising — Impact</h2>
+        <h2 className="leading-none">
+          <span className="block text-3xl md:text-4xl lg:text-5xl font-light tracking-tight">
+            Impact
+          </span>
+          <span className="block text-3xl md:text-4xl lg:text-5xl  font-medium tracking-tight mt-1">
+            In Action
+          </span>
+        </h2>
+        <div className="mt-4 flex items-center justify-start">
+          <div className="h-px w-38 bg-gray-200" />
+        </div>
       </header>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

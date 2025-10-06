@@ -1,48 +1,112 @@
 import Image from "next/image";
 import React from "react";
 
+// HomeProjects_UWT_Impact.jsx
+// - Tailwind-ready React component for the UWT "Impact In Action" section.
+// - Replace the placeholder image src values with your actual images (e.g. put images in /public/images/pep-sru/...)
+// - For each project there is an `imagesFolder` field showing the intended folder name you mentioned.
+
+const projects = [
+  {
+    id: "uwt-pep",
+    title: "UWT Personal Enhancement Program (PEP)",
+    subtitle: "Creating safer futures through SRHR education and awareness",
+    description:
+      "Interactive workshops for Grades 5–12 focusing on anti-bullying, self-love, healthy boundaries, mental health awareness, and stigma reduction. Sessions built safe spaces for students to explore identity, emotions, and empathy—helping them grow into resilient, confident members of society.",
+    imagesFolder: "PEP SRU / PEP SUNNYDALE / PEP VASSAR COLLEGE",
+    coverSrc: "/projects/pep-sru.jpg", // replace with your image
+  },
+  {
+    id: "scholastica-sru",
+    title: "Scholastica SRU (Uttara)",
+    subtitle: "250+ students — grades 7–12",
+    description:
+      "Two separate sessions (grades 7–9 and 10–12), hosted by Tayieba Rahemin. Time slots coordinated with school authorities.",
+    imagesFolder: "PEP SRU",
+    coverSrc: "/projects/pep-sru.jpg",
+  },
+  {
+    id: "sunnydale",
+    title: "Sunnydale",
+    subtitle: "Two separate sessions",
+    description: "Two sessions delivered for different age groups.",
+    imagesFolder: "PEP SUNNYDALE",
+    coverSrc: "/projects/pep-sunnydale.jpg",
+  },
+  {
+    id: "vassar",
+    title: "Vassar College, New York",
+    subtitle: "2022",
+    description: "Workshop held at Vassar College.",
+    imagesFolder: "PEP VASSAR COLLEGE, 2023",
+    coverSrc: "/projects/pep-vassar.jpg",
+  },
+];
+
 export default function HomeProjects() {
   return (
-    <section className="max-w-7xl mx-auto py-16 px-4">
-      <h2 className="text-3xl font-bold text-center mb-12">Our Key Projects</h2>
+    <section className="max-w-7xl mx-auto py-16 ">
+      <h2 className="leading-none">
+        <span className="block text-3xl md:text-4xl lg:text-5xl font-light tracking-tight">
+          Core
+        </span>
+        <span className="block text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight mt-1">
+          Projects
+        </span>
+      </h2>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-6 gap-6">
-        {/* Project 1 Image (large) */}
-        <div className="relative w-full h-48 sm:h-56 md:h-64 sm:col-span-2 md:col-span-4 rounded-2xl overflow-hidden shadow-lg">
-          <Image
-            src="https://images.unsplash.com/photo-1625486368591-35c24ea9dddd?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Prottasha"
-            fill
-            className="object-cover hover:scale-105 transform transition-transform duration-300"
-          />
-        </div>
+      <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-6">
+        {/* Large feature card: UWT PEP */}
+        <article className="relative col-span-1 sm:col-span-2 md:col-span-4 rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-neutral-900 border">
+          <div className="relative w-full h-56 md:h-72">
+            {/* Replace src with the actual image you will add */}
+            <Image
+              src={projects[0].coverSrc}
+              alt={`${projects[0].title} cover — replace with real image`}
+              fill
+              className="object-cover hover:scale-105 transform transition-transform duration-300"
+              priority
+            />
+          </div>
 
-        {/* Project 1 Details */}
-        <div className="bg-white dark:bg-neutral-900 p-6 rounded-2xl shadow-lg flex flex-col justify-between sm:col-span-2 md:col-span-2 border">
-          <h3 className="text-xl font-semibold mb-4">Prottasha</h3>
-          <p className="text-gray-600 dark:text-gray-300">
-            Empowering marginalized communities in Bangladesh through
-            sustainable reintegration, vocational training, and advocacy.
-          </p>
-        </div>
+          <div className="p-6">
+            <h3 className="text-2xl font-semibold mb-2">{projects[0].title}</h3>
+            <p className="text-sm text-gray-500 dark:text-gray-300 mb-4">
+              {projects[0].subtitle}
+            </p>
+            <p className="text-gray-700 dark:text-gray-300">
+              {projects[0].description}
+            </p>
+          </div>
+        </article>
 
-        {/* Project 2 Details */}
-        <div className="bg-white dark:bg-neutral-900 p-6 rounded-2xl shadow-lg flex flex-col justify-between sm:col-span-2 md:col-span-2 border">
-          <h3 className="text-xl font-semibold mb-4">Oikko Chokto</h3>
-          <p className="text-gray-600 dark:text-gray-300">
-            Crafting community arts and craft workshops that preserve
-            traditional techniques and uplift women artisans.
-          </p>
-          <p className="text-md uppercase">Learn More</p>
-        </div>
+        {/* Right column: 3 smaller project cards stacked */}
+        <div className="col-span-1 sm:col-span-2 md:col-span-2 flex flex-col gap-6">
+          {projects.slice(1).map((p) => (
+            <article
+              key={p.id}
+              className="bg-white dark:bg-neutral-900 p-4 rounded-2xl shadow-lg border flex gap-4 items-start"
+            >
+              <div className="relative w-28 h-20 flex-shrink-0 rounded-lg overflow-hidden">
+                <Image
+                  src={p.coverSrc}
+                  alt={`${p.title} — add image to ${p.imagesFolder}`}
+                  fill
+                  className="object-cover"
+                />
+              </div>
 
-        <div className="relative w-full h-48 sm:h-56 md:h-64 sm:col-span-2 md:col-span-4 rounded-2xl overflow-hidden shadow-lg">
-          <Image
-            src="https://images.unsplash.com/photo-1625486368591-35c24ea9dddd?q=80&w=1526&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Uikko Chokto"
-            fill
-            className="object-cover hover:scale-105 transform transition-transform duration-300"
-          />
+              <div className="flex-1">
+                <h4 className="text-lg font-semibold">{p.title}</h4>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  {p.subtitle}
+                </p>
+                <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
+                  {p.description}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
