@@ -1,17 +1,12 @@
-// UWTTeamComponent.tsx
-// Server component (Next.js app router). No "use client" here.
 import React from "react";
-import TeamCard from "./teamCard";
+import Link from "next/link";
 import { client } from "@/sanity/lib/client";
+import TeamCarousel from "./team-carousel";
 
 type SanityTeam = {
   _id: string;
   name: string;
   position?: string;
-  background?: string;
-  motivation?: string;
-  contribution?: string;
-  personalTouch?: string;
   imageUrl?: string | null;
 };
 
@@ -19,10 +14,6 @@ const query = `*[_type == "team"] | order(name asc) {
   _id,
   name,
   position,
-  background,
-  motivation,
-  contribution,
-  personalTouch,
   "imageUrl": image.asset->url
 }`;
 
@@ -30,9 +21,9 @@ export default async function UWTTeamComponent() {
   const team = (await client.fetch(query)) as SanityTeam[];
 
   return (
-    <section className="max-w-7xl mx-auto px-4 py-10">
-      <header className="mb-6">
-        <div className="flex flex-col items-start justify-center md:pr-8">
+    <section className="w-full bg-white text-gray-900 py-12 lg:py-20">
+      <div className="max-w-7xl mx-auto px-6 md:px-10 ">
+        <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8 gap-4">
           <div>
             <h1 className="leading-none">
               <span className="block text-4xl md:text-5xl lg:text-6xl font-light tracking-tight">
@@ -42,36 +33,21 @@ export default async function UWTTeamComponent() {
                 TEAM
               </span>
             </h1>
-
-            <div className="hidden md:block h-px w-48 bg-gray-200 mt-8" />
           </div>
+          <Link
+            href="/team"
+            className="inline-flex items-center text-sm font-medium text-gray-900 hover:text-gray-600 transition-colors"
+          >
+            View All →
+          </Link>
         </div>
-        <p className="mt-2 text-gray-600 max-w-2xl">
+
+        <p className="text-gray-600 max-w-2xl mb-8">
           A youth-led team working across advocacy, mental health and community
           programs.
         </p>
-      </header>
-
-      <div className="divide-y divide-gray-200">
-        {team.map((member) => (
-          <div key={member._id} className="px-0 md:px-2 py-6">
-            <TeamCard
-              member={
-                {
-                  id: member._id,
-                  name: member.name,
-                  role: member.position ?? "",
-                  bio: member.background ?? "",
-                  motivation: member.motivation ?? "",
-                  contribution: member.contribution ?? "",
-                  personalTouch: member.personalTouch ?? "",
-                  imageUrl: member.imageUrl ?? undefined,
-                } as any
-              }
-            />
-          </div>
-        ))}
       </div>
+      <TeamCarousel team={team} />
     </section>
   );
 }

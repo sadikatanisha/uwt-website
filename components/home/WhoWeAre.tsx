@@ -7,7 +7,6 @@ export default function WhoWeAre() {
     <section className="w-full bg-white text-gray-900">
       <div className="max-w-7xl mx-auto px-6 py-12 md:py-24">
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-          {/* Text column (UNCHANGED) */}
           <div className="w-full md:w-1/2">
             <h2 className="leading-none">
               <span className="block text-3xl md:text-4xl lg:text-5xl font-light tracking-tight">

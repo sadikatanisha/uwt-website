@@ -1,20 +1,15 @@
 import Image from "next/image";
 import React from "react";
 
-// HomeProjects_UWT_Impact.jsx
-// - Tailwind-ready React component for the UWT "Impact In Action" section.
-// - Replace the placeholder image src values with your actual images (e.g. put images in /public/images/pep-sru/...)
-// - For each project there is an `imagesFolder` field showing the intended folder name you mentioned.
-
 const projects = [
   {
     id: "uwt-pep",
-    title: "UWT Personal Enhancement Program (PEP)",
+    title: "Personal Enhancement Program",
     subtitle: "Creating safer futures through SRHR education and awareness",
     description:
       "Interactive workshops for Grades 5–12 focusing on anti-bullying, self-love, healthy boundaries, mental health awareness, and stigma reduction. Sessions built safe spaces for students to explore identity, emotions, and empathy—helping them grow into resilient, confident members of society.",
     imagesFolder: "PEP SRU / PEP SUNNYDALE / PEP VASSAR COLLEGE",
-    coverSrc: "/projects/pep-sru.jpg", // replace with your image
+    coverSrc: "/projects/pep-sru.jpg",
   },
   {
     id: "scholastica-sru",
