@@ -49,6 +49,9 @@ export default function HomeProjects() {
           Projects
         </span>
       </h2>
+      <div className="flex items-center justify-start gap-2 my-4">
+        <div className="h-px w-48 bg-gray-200" />
+      </div>
 
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-6">
         {/* Large feature card: UWT PEP */}

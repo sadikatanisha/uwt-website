@@ -1,6 +1,5 @@
 "use client";
-
-import React from "react";
+import Image from "next/image";
 
 export default function OurStory() {
   return (
@@ -20,8 +19,15 @@ export default function OurStory() {
               </h1>
 
               {/* subtle rule */}
-              <div className="hidden md:block h-px w-48 bg-gray-200 mt-8" />
+              <div className="h-px w-48 bg-gray-200 mt-8" />
             </div>
+            <Image
+              src="/our-story-image.jpg"
+              alt=""
+              width={200}
+              height={200}
+              className="mt-8 rounded-md shadow-md object-cover mx-auto lg:mx-0"
+            />
           </div>
 
           {/* RIGHT: story content */}

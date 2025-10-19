@@ -51,7 +51,7 @@ const ITEMS = [
 export default function OurWorkCards() {
   return (
     <section className="w-full bg-white text-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-2 py-12 md:py-20">
         <header className="text-center max-w-2xl mx-auto mb-12">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-light tracking-tight">
             OUR WORK

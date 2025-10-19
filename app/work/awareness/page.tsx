@@ -5,7 +5,7 @@ export default function AwarenessPage() {
   return (
     <section className="w-full bg-white text-gray-900">
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-12 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1  gap-8 items-start">
           <div className="flex flex-col items-start justify-center md:pr-8">
             <div>
               <h1 className="leading-none">
@@ -21,7 +21,7 @@ export default function AwarenessPage() {
           </div>
 
           <div className="md:col-span-2">
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
+            <p className="text-[#BC4749] text-base md:text-lg leading-relaxed mb-8">
               Short sessions on consent, boundaries, mental health and breaking
               rape-culture norms.
             </p>
@@ -49,32 +49,6 @@ export default function AwarenessPage() {
                 Dialogue: Dissecting Rape Culture, which created space for
                 critical conversations and practical solutions.
               </p>
-
-              <div className="mt-8 not-prose">
-                <div className="border-t border-gray-100 pt-8">
-                  <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4">
-                    Key Focus Areas
-                  </h3>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="text-[#BC4749] mr-3 mt-1">•</span>
-                      <span>Consent and boundaries education</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-[#BC4749] mr-3 mt-1">•</span>
-                      <span>Gender-based violence awareness</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-[#BC4749] mr-3 mt-1">•</span>
-                      <span>Cyber safety and digital rights</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-[#BC4749] mr-3 mt-1">•</span>
-                      <span>Breaking harmful generational cycles</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
             </article>
           </div>
         </div>

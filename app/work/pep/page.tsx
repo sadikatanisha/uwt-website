@@ -1,10 +1,11 @@
+import HomeProjects from "@/components/home/HomeProjects";
 import React from "react";
 
 export default function PEPPage() {
   return (
     <section className="w-full bg-white text-gray-900">
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-12 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1  gap-8 items-start">
           <div className="flex flex-col items-start justify-center md:pr-8">
             <div>
               <h1 className="leading-none">
@@ -23,7 +24,7 @@ export default function PEPPage() {
           </div>
 
           <div className="md:col-span-2">
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
+            <p className="text-[#BC4749] text-base md:text-lg leading-relaxed mb-8">
               Workshops in schools & colleges covering puberty, boundaries and
               cyber safety.
             </p>
@@ -50,6 +51,7 @@ export default function PEPPage() {
           </div>
         </div>
       </div>
+      <HomeProjects />
     </section>
   );
 }

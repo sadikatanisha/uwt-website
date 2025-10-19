@@ -5,7 +5,7 @@ export default function MentalHealthPage() {
   return (
     <section className="w-full bg-white text-gray-900">
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-12 lg:py-20">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+        <div className="grid grid-cols-1  gap-8 items-start">
           <div className="flex flex-col items-start justify-center md:pr-8">
             <div>
               <h1 className="leading-none">
@@ -21,7 +21,7 @@ export default function MentalHealthPage() {
           </div>
 
           <div className="md:col-span-2">
-            <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8">
+            <p className="text-[#BC4749] text-base md:text-lg leading-relaxed mb-8">
               Safe spaces and expert-led sessions for trauma recovery, anxiety
               and stress management.
             </p>
@@ -41,32 +41,6 @@ export default function MentalHealthPage() {
                 content and survivor storytelling. Feedback shows these safe
                 spaces are meaningful parts of the healing process.
               </p>
-
-              <div className="mt-8 not-prose">
-                <div className="border-t border-gray-100 pt-8">
-                  <h3 className="text-xl md:text-2xl font-semibold text-gray-900 mb-4">
-                    Our Approach
-                  </h3>
-                  <ul className="space-y-3 text-gray-700">
-                    <li className="flex items-start">
-                      <span className="text-[#BC4749] mr-3 mt-1">•</span>
-                      <span>Expert-led online therapy sessions</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-[#BC4749] mr-3 mt-1">•</span>
-                      <span>Trauma recovery and healing support</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-[#BC4749] mr-3 mt-1">•</span>
-                      <span>Stress and anxiety management</span>
-                    </li>
-                    <li className="flex items-start">
-                      <span className="text-[#BC4749] mr-3 mt-1">•</span>
-                      <span>Safe spaces for survivor storytelling</span>
-                    </li>
-                  </ul>
-                </div>
-              </div>
             </article>
           </div>
         </div>
