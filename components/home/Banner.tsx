@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -87,28 +88,44 @@ export default function Banner() {
         alt={banner?.title ?? "Banner"}
         fill
         className="object-cover object-center"
-        // placeholder only works for static local strings; if using external URL consider removing placeholder
-        // placeholder="blur"
-        // blurDataURL="/placeholder.png"
         priority
         onLoadingComplete={() => setLoading(false)}
+        style={{ filter: "grayscale(100%)", transition: "filter 300ms ease" }}
       />
 
       <div className="absolute inset-0 bg-black/50" />
 
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 sm:px-8">
-        <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md mb-4">
+        <motion.h1
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-md mb-4"
+        >
           {banner?.title ?? "Educate Empower Eradicate"}
-        </h1>
-        <p className="max-w-2xl text-lg sm:text-2xl text-gray-100 mb-6">
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+          className="max-w-2xl text-lg sm:text-2xl text-gray-100 mb-6"
+        >
           {banner?.subTitle ?? "Unstitchd Women's Tapestry"}
-        </p>
-        <a
+        </motion.p>
+        <motion.a
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.3 }}
+          transition={{ duration: 0.8, delay: 0.4, ease: "easeOut" }}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
           href="/about"
-          className="inline-block bg-white text-black font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-200 transition"
+          className="inline-block bg-white text-black font-semibold px-6 py-3 rounded-full shadow-lg hover:bg-gray-200 transition "
         >
           Learn More
-        </a>
+        </motion.a>
       </div>
     </section>
   );

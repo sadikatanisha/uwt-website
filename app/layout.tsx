@@ -15,8 +15,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "UWT",
-  description: "Unstitched Womens Tapestry",
+  title: "UWT - Unstitched Women’s Tapestry",
+  description: "Unstitched Women's Tapestry",
 };
 
 export default function RootLayout({

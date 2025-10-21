@@ -17,8 +17,9 @@ const Navbar: React.FC = () => {
   const navItems = [
     { label: "Home", href: "/" },
     { label: "About", href: "/about" },
-    { label: "Contact", href: "/contact" },
+
     { label: "Team", href: "/team" },
+    { label: "Contact", href: "/contact" },
   ];
 
   const workItems = [
@@ -64,7 +65,10 @@ const Navbar: React.FC = () => {
             }`}
           >
             Work
-            <ChevronDown size={16} className={`transition-transform ${isWorkOpen ? "rotate-180" : ""}`} />
+            <ChevronDown
+              size={16}
+              className={`transition-transform ${isWorkOpen ? "rotate-180" : ""}`}
+            />
           </button>
           {isWorkOpen && (
             <div className="absolute top-full left-0 mt-1 w-64 bg-white shadow-lg rounded-lg py-2 border border-gray-100">
@@ -73,7 +77,9 @@ const Navbar: React.FC = () => {
                   key={item.href}
                   href={item.href}
                   className={`block px-4 py-3 hover:bg-gray-50 transition-colors ${
-                    pathname === item.href ? "text-[#BC4749] bg-gray-50" : "text-gray-800"
+                    pathname === item.href
+                      ? "text-[#BC4749] bg-gray-50"
+                      : "text-gray-800"
                   }`}
                 >
                   {item.label}
@@ -84,7 +90,10 @@ const Navbar: React.FC = () => {
         </li>
       </ul>
       <Link href="/donate">
-        <Button size="lg" className="hidden md:block">
+        <Button
+          size="lg"
+          className="hidden md:block bg-[#BC4749] hover:bg-[#a63b3d] text-white"
+        >
           Donate
         </Button>
       </Link>
@@ -113,7 +122,9 @@ const Navbar: React.FC = () => {
                     <Link
                       href={item.href}
                       className={`text-base hover:text-[#BC4749] transition-colors ${
-                        pathname === item.href ? "text-[#BC4749]" : "text-gray-700"
+                        pathname === item.href
+                          ? "text-[#BC4749]"
+                          : "text-gray-700"
                       }`}
                     >
                       {item.label}

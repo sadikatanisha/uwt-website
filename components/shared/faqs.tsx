@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { motion } from "framer-motion";
 import {
   Accordion,
   AccordionItem,
@@ -9,6 +10,40 @@ import {
 } from "@/components/ui/accordion";
 
 export default function Faqs() {
+  const headerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: [0.25, 0.1, 0.25, 1] as any },
+    },
+  };
+  const divider = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: {
+      scaleX: 1,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.1, 0.25, 1] as any,
+        delay: 0.45,
+      },
+    },
+  };
+
+  const accordionVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.1, 0.25, 1] as any,
+        delay: 0.2,
+      },
+    },
+  };
+
   const faqs = [
     {
       id: "values",
@@ -130,22 +165,43 @@ export default function Faqs() {
   return (
     <section className="max-w-7xl mx-auto p-6">
       <div className="space-y-4">
-        <h2 className="leading-none">
+        <motion.h2
+          className="leading-none"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.5 }}
+          variants={headerVariants}
+        >
           <span className="block text-3xl md:text-4xl lg:text-5xl font-light tracking-tight">
             FREQUENTLY ASKED
           </span>
           <span className="block text-3xl md:text-4xl lg:text-5xl  font-medium tracking-tight mt-1">
             QUESTIONS
           </span>
-        </h2>
-        <Accordion type="single" collapsible>
-          {faqs.map((f) => (
-            <AccordionItem key={f.id} value={f.id}>
-              <AccordionTrigger>{f.q}</AccordionTrigger>
-              <AccordionContent>{f.a}</AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+          <div className="mt-4 flex items-center justify-start">
+            {/* divider */}
+            <motion.div
+              className="h-px w-56 bg-gray-200 origin-center"
+              style={{ transformOrigin: "center" }}
+              variants={divider}
+            />
+          </div>
+        </motion.h2>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: false, amount: 0.3 }}
+          variants={accordionVariants}
+        >
+          <Accordion type="single" collapsible>
+            {faqs.map((f) => (
+              <AccordionItem key={f.id} value={f.id}>
+                <AccordionTrigger>{f.q}</AccordionTrigger>
+                <AccordionContent>{f.a}</AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
+        </motion.div>
       </div>
     </section>
   );
