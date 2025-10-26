@@ -1,13 +1,56 @@
 "use client";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function OurStory() {
+  const headerVariants = {
+    hidden: { opacity: 0, x: -30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as any },
+    },
+  };
+
+  const dividerVariants = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: {
+      scaleX: 1,
+      opacity: 1,
+      transition: { duration: 1, ease: [0.25, 0.1, 0.25, 1] as any, delay: 0.3 },
+    },
+  };
+
+  const imageVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as any, delay: 0.5 },
+    },
+  };
+
+  const contentVariants = {
+    hidden: { opacity: 0, x: 30 },
+    visible: {
+      opacity: 1,
+      x: 0,
+      transition: { duration: 0.8, ease: [0.25, 0.1, 0.25, 1] as any, delay: 0.4 },
+    },
+  };
+
   return (
     <section className="w-full bg-white text-gray-900">
       <div className="max-w-7xl mx-auto px-6 md:px-10 py-12 lg:py-20">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
           {/* LEFT: large typographic label */}
-          <div className="flex flex-col items-start justify-center md:pr-8">
+          <motion.div
+            className="flex flex-col items-start justify-center md:pr-8"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+            variants={headerVariants}
+          >
             <div>
               <h1 className="leading-none">
                 <span className="block text-4xl md:text-5xl lg:text-6xl font-light tracking-tight">
@@ -18,20 +61,38 @@ export default function OurStory() {
                 </span>
               </h1>
 
-              {/* subtle rule */}
-              <div className="h-px w-48 bg-gray-200 mt-8" />
+              <motion.div
+                className="h-px w-48 bg-gray-200 mt-8 origin-left"
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                variants={dividerVariants}
+              />
             </div>
-            <Image
-              src="/our-story-image.jpg"
-              alt=""
-              width={200}
-              height={200}
-              className="mt-8 rounded-md shadow-md object-cover mx-auto lg:mx-0"
-            />
-          </div>
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+              variants={imageVariants}
+            >
+              <Image
+                src="/our-story-image.jpg"
+                alt=""
+                width={200}
+                height={200}
+                className="mt-8 rounded-md shadow-md object-cover mx-auto lg:mx-0"
+              />
+            </motion.div>
+          </motion.div>
 
           {/* RIGHT: story content */}
-          <div className="md:col-span-2">
+          <motion.div
+            className="md:col-span-2"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: false, amount: 0.3 }}
+            variants={contentVariants}
+          >
             <article className="prose prose-sm md:prose-base max-w-none text-gray-800">
               <p>
                 Unstitched Women’s Tapestry (UWT) began as an online platform,
@@ -74,15 +135,17 @@ export default function OurStory() {
 
               {/* CTA */}
               <div className="mt-6">
-                <a
+                <motion.a
                   href="#get-involved"
                   className="inline-block bg-gray-900 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-400"
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Get involved
-                </a>
+                </motion.a>
               </div>
             </article>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

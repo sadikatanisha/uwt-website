@@ -1,11 +1,26 @@
 "use client";
 
-import React from "react";
-import Link from "next/link";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FaHeart, FaUsers, FaEnvelope } from "react-icons/fa";
 
-export default function CTA() {
+export default function Newsletter() {
+  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+
+    // Simulate API call - replace with your actual newsletter API
+    setTimeout(() => {
+      setStatus("success");
+      setEmail("");
+      setTimeout(() => setStatus("idle"), 3000);
+    }, 1000);
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -26,8 +41,8 @@ export default function CTA() {
   };
 
   return (
-    <section className="w-full bg-black text-white py-16 md:py-24 rounded-t-2xl mt-16">
-      <div className="max-w-7xl mx-auto ">
+    <section className="w-full bg-black text-white py-16 md:py-24 rounded-md">
+      <div className="max-w-4xl mx-auto px-6 md:px-10">
         <motion.div
           className="text-center"
           initial="hidden"
@@ -37,11 +52,11 @@ export default function CTA() {
         >
           <motion.div variants={itemVariants}>
             <h2 className="leading-none mb-6">
-              <span className="block text-4xl md:text-5xl lg:text-6xl font-light tracking-tight">
-                BE PART OF THE
+              <span className="block text-3xl md:text-4xl lg:text-5xl font-light tracking-tight">
+                STAY CONNECTED
               </span>
-              <span className="block text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mt-2">
-                CHANGE
+              <span className="block text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mt-2">
+                WITH OUR MISSION
               </span>
             </h2>
           </motion.div>
@@ -54,54 +69,74 @@ export default function CTA() {
           </motion.div>
 
           <motion.p
-            className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto mb-12"
+            className="text-base md:text-lg text-white/90 max-w-2xl mx-auto mb-10"
             variants={itemVariants}
           >
-            Join us in creating safer, more equitable communities. Your support
-            helps us continue our mission to educate, eradicate, and empower.
+            Subscribe to our newsletter for updates on workshops, campaigns, and
+            ways to get involved in creating safer communities.
           </motion.p>
 
-          <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 md:gap-6"
+          <motion.form
+            onSubmit={handleSubmit}
+            className="max-w-xl mx-auto"
             variants={itemVariants}
           >
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/donate"
-                className="group inline-flex items-center gap-3 bg-white text-[#BC4749] px-8 py-4 rounded-full text-base font-semibold shadow-lg hover:shadow-xl transition-all"
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Enter your email address"
+                required
+                disabled={status === "loading" || status === "success"}
+                className="flex-1 px-6 py-4 rounded-full text-gray-900 placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-white/50 disabled:opacity-60 disabled:cursor-not-allowed"
+              />
+              <motion.button
+                type="submit"
+                disabled={status === "loading" || status === "success"}
+                whileHover={{
+                  scale: status === "idle" || status === "error" ? 1.05 : 1,
+                }}
+                whileTap={{
+                  scale: status === "idle" || status === "error" ? 0.95 : 1,
+                }}
+                className="px-8 py-4 rounded-full bg-white text-[#BC4749] font-semibold hover:bg-gray-100 transition-colors disabled:opacity-60 disabled:cursor-not-allowed whitespace-nowrap"
               >
-                <FaHeart className="w-5 h-5" />
-                <span>Donate Now</span>
-              </Link>
-            </motion.div>
+                {status === "loading" && "Subscribing..."}
+                {status === "success" && "Subscribed! ✓"}
+                {status === "error" && "Try Again"}
+                {status === "idle" && "Subscribe"}
+              </motion.button>
+            </div>
 
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/team"
-                className="group inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full text-base font-semibold hover:bg-white/20 transition-all"
+            {status === "success" && (
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 text-sm text-white/90"
               >
-                <FaUsers className="w-5 h-5" />
-                <span>Join Our Team</span>
-              </Link>
-            </motion.div>
+                Thank you for subscribing! Check your inbox for confirmation.
+              </motion.p>
+            )}
 
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-              <Link
-                href="/contact"
-                className="group inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm border-2 border-white/30 text-white px-8 py-4 rounded-full text-base font-semibold hover:bg-white/20 transition-all"
+            {status === "error" && (
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="mt-4 text-sm text-white/90"
               >
-                <FaEnvelope className="w-5 h-5" />
-                <span>Get in Touch</span>
-              </Link>
-            </motion.div>
-          </motion.div>
+                Something went wrong. Please try again.
+              </motion.p>
+            )}
+          </motion.form>
 
           <motion.div
-            className="mt-12 pt-8 border-t border-white/20"
+            className="mt-10 pt-8 border-t border-white/20"
             variants={itemVariants}
           >
-            <p className="text-sm text-white/70">
-              Every contribution, big or small, helps us make a lasting impact.
+            <p className="text-xs text-white/70">
+              We respect your privacy. Unsubscribe at any time. No spam, just
+              meaningful updates.
             </p>
           </motion.div>
         </motion.div>
